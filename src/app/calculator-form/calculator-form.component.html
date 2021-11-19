@@ -1,0 +1,20 @@
+<form (ngSubmit)="onSubmit()" #calculatorForm="ngForm">
+    <div class="form-group">
+        <input type="text" class="form-control" id="equation" required [(ngModel)]="model.equation" name="equation" #equation="ngModel" placeholder="Input equation" >
+        <div [hidden]="equation.valid || equation.pristine"
+            class="alert alert-danger">
+            Equation is required
+        </div>
+    </div>
+    <br>
+    <div class="p-3">
+        <button type="submit" class="btn btn-success" [disabled]="!calculatorForm.form.valid" > Calculate </button>
+    </div>
+</form>
+
+
+<div [hidden]="!submitted">
+    <h2>
+        You entered this equation: {{model.equation}}
+    </h2>
+</div>
