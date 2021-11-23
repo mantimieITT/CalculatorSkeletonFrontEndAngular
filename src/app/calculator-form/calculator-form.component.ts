@@ -1,25 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
-import { Calculator } from '../calculator';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-calculator-form',
   templateUrl: './calculator-form.component.html',
   styleUrls: ['./calculator-form.component.css']
 })
-export class CalculatorFormComponent implements OnInit {
+export class CalculatorFormComponent{
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  model = new Calculator('');
-  submitted = false;
-
-  onSubmit() {this.submitted = true;}
-
-  newCalculator(){
-    this.model = new Calculator('');
-  }
-  ngOnInit(): void {
-  }
-
+  onSubmit(data:string)
+    {
+      this.http.post('', data).subscribe((result)=>{
+        console.warn("result",result)})
+      console.warn(data);
+      
+    }
 }
