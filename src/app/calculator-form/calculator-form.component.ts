@@ -14,9 +14,9 @@ export class CalculatorFormComponent{
 
   onSubmit(data:string)
     {
-      this.http.post('', data).subscribe((result)=>{
+      this.http.post('http://localhost:9080/calculate', data).subscribe((result)=>{
         console.warn("result",result)})
       console.warn(data);
-      
+
     }
 }
