@@ -8,15 +8,19 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './calculator-form.component.html',
   styleUrls: ['./calculator-form.component.css']
 })
-export class CalculatorFormComponent{
+export class CalculatorFormComponent implements OnInit{
 
+  answer:any;
   constructor(private http: HttpClient) { }
 
   onSubmit(data:string)
     {
-      this.http.post('http://localhost:9080/calculate', data).subscribe((result)=>{
-        console.warn("result",result)})
-      console.warn(data);
 
+      this.http.post('http://localhost:9080/calculate', data, {responseType:'text'}).subscribe((result)=>{
+        this.answer = result;
+        console.log(result)})   
     }
+  
+  ngOnInit() {this.answer = ''}
+    
 }
